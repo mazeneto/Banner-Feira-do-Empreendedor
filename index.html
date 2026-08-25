@@ -67,11 +67,11 @@
 
   /* alturas "aleatórias" espalhadas por todo o banner, tamanho em vw
      (fixo e previsível — não depende de cadeia de % de altura) */
-  .speed-row.r1{ top:6%;  height:4.6cqw; opacity:.75; }
-  .speed-row.r2{ top:24%; height:3.2cqw; opacity:.85; }
-  .speed-row.r3{ top:46%; height:5.6cqw; opacity:.65; }
-  .speed-row.r4{ top:68%; height:3.6cqw; opacity:.8; }
-  .speed-row.r5{ top:87%; height:4.2cqw; opacity:.7; }
+  .speed-row.r1{ top:6%;  height:4.6cqw; opacity:.88; }
+  .speed-row.r2{ top:24%; height:3.2cqw; opacity:1; }
+  .speed-row.r3{ top:46%; height:5.6cqw; opacity:.78; }
+  .speed-row.r4{ top:68%; height:3.6cqw; opacity:.94; }
+  .speed-row.r5{ top:87%; height:4.2cqw; opacity:.84; }
 
   .speed-row.r1 .speed-track{ animation-duration:6.2s; }
   .speed-row.r2 .speed-track{ animation-duration:4.4s; }
@@ -107,6 +107,8 @@
   .headline-img img{ height:100%; width:auto; display:block; }
 
   .cta{
+    align-self:flex-end;
+    margin-right:1cqw;
     display:inline-flex;
     align-items:center;
     gap:.5em;
@@ -150,20 +152,20 @@
     height:100%;
     width:auto;
     display:block;
-    transform:translateX(0);
+    transform:translateX(0) scale(1);
     opacity:1;
-    transition:transform .8s cubic-bezier(.62,.05,.32,1), opacity .5s ease;
+    transition:transform 1.1s cubic-bezier(.62,.05,.32,1), opacity .7s ease;
   }
 
-  /* estado antes de entrar: fora de cena, à esquerda */
+  /* estado antes de entrar: fora de cena, à esquerda, um pouco menor */
   .people-layer img.is-hidden-left{
-    transform:translateX(-25%);
+    transform:translateX(-55%) scale(.92);
     opacity:0;
     pointer-events:none;
   }
-  /* estado ao sair: fora de cena, à direita */
+  /* estado ao sair: fora de cena, à direita, um pouco maior (efeito de saída) */
   .people-layer img.is-hidden-right{
-    transform:translateX(25%);
+    transform:translateX(55%) scale(1.06);
     opacity:0;
     pointer-events:none;
   }
