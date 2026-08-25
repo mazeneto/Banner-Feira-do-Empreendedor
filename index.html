@@ -26,8 +26,8 @@
     background-position:center;
   }
 
-  /* ===== LINHAS DE VELOCIDADE — várias fileiras, alturas diferentes,
-     espalhadas por todo o banner, sempre correndo pra direita ===== */
+  /* ===== LINHAS DE VELOCIDADE — fileiras em alturas aleatórias,
+     por todo o banner, correndo pra direita ===== */
   .speed-lines{
     position:absolute;
     inset:0;
@@ -63,54 +63,56 @@
     to{ transform:translateX(0%); }
   }
 
-  /* altura fixa em vw (não em % encadeado) pra não crescer sem controle */
-  .speed-row.r1{ top:6%;  height:3.2vw; opacity:.4; }
-  .speed-row.r2{ top:24%; height:2.4vw; opacity:.48; }
-  .speed-row.r3{ top:42%; height:4vw;   opacity:.32; }
-  .speed-row.r4{ top:62%; height:2.8vw; opacity:.45; }
-  .speed-row.r5{ top:82%; height:3.4vw; opacity:.36; }
+  /* alturas "aleatórias" espalhadas por todo o banner, tamanho em vw
+     (fixo e previsível — não depende de cadeia de % de altura) */
+  .speed-row.r1{ top:3%;  height:4.2vw; opacity:.55; }
+  .speed-row.r2{ top:16%; height:2.8vw; opacity:.65; }
+  .speed-row.r3{ top:27%; height:5.4vw; opacity:.45; }
+  .speed-row.r4{ top:41%; height:3.4vw; opacity:.6; }
+  .speed-row.r5{ top:53%; height:4.8vw; opacity:.5; }
+  .speed-row.r6{ top:67%; height:2.6vw; opacity:.65; }
+  .speed-row.r7{ top:79%; height:4vw;   opacity:.55; }
+  .speed-row.r8{ top:91%; height:3vw;   opacity:.6; }
 
-  .speed-row.r1 .speed-track{ animation-duration:6.5s; }
-  .speed-row.r2 .speed-track{ animation-duration:5s; }
-  .speed-row.r3 .speed-track{ animation-duration:8s; }
-  .speed-row.r4 .speed-track{ animation-duration:5.6s; }
-  .speed-row.r5 .speed-track{ animation-duration:7.2s; }
+  .speed-row.r1 .speed-track{ animation-duration:6.2s; }
+  .speed-row.r2 .speed-track{ animation-duration:4.4s; }
+  .speed-row.r3 .speed-track{ animation-duration:7.6s; }
+  .speed-row.r4 .speed-track{ animation-duration:5.2s; }
+  .speed-row.r5 .speed-track{ animation-duration:6.8s; }
+  .speed-row.r6 .speed-track{ animation-duration:4.1s; }
+  .speed-row.r7 .speed-track{ animation-duration:5.9s; }
+  .speed-row.r8 .speed-track{ animation-duration:4.8s; }
 
-  .speed-row.r1 .speed-track img{ margin-right:9vw; }
-  .speed-row.r2 .speed-track img{ margin-right:7vw; }
-  .speed-row.r3 .speed-track img{ margin-right:11vw; }
-  .speed-row.r4 .speed-track img{ margin-right:8vw; }
-  .speed-row.r5 .speed-track img{ margin-right:10vw; }
+  .speed-row.r1 .speed-track img{ margin-right:8vw; }
+  .speed-row.r2 .speed-track img{ margin-right:6vw; }
+  .speed-row.r3 .speed-track img{ margin-right:10vw; }
+  .speed-row.r4 .speed-track img{ margin-right:7vw; }
+  .speed-row.r5 .speed-track img{ margin-right:9vw; }
+  .speed-row.r6 .speed-track img{ margin-right:5.5vw; }
+  .speed-row.r7 .speed-track img{ margin-right:8.5vw; }
+  .speed-row.r8 .speed-track img{ margin-right:6.5vw; }
 
-  /* ===== LOGO ===== */
-  .logo{
+  /* ===== BLOCO DE CONTEÚDO (logo + texto + CTA) — maior e
+     centralizado verticalmente, mais próximo do centro da peça ===== */
+  .content-block{
     position:absolute;
-    top:5%;
-    left:4%;
-    height:20%;
-    z-index:6;
+    left:7%;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:5;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:1.3vw;
   }
+
+  .logo{ height:7vw; }
   .logo img{ height:100%; width:auto; display:block; }
 
-  /* ===== TEXTO (imagem pronta, já com a data) — menor, dimensionado
-     pela ALTURA do hero (é a medida curta nesse formato panorâmico) ===== */
-  .headline-img{
-    position:absolute;
-    left:4%;
-    top:27%;
-    height:34%;
-    z-index:5;
-  }
+  .headline-img{ height:12.5vw; }
   .headline-img img{ height:100%; width:auto; display:block; }
 
-  /* ===== CTA logo abaixo do texto — mesma largura da imagem do texto ===== */
   .cta{
-    position:absolute;
-    left:4%;
-    top:63%;
-    width:34%;
-    max-width:34%;
-    z-index:5;
     display:inline-flex;
     align-items:center;
     gap:.5em;
@@ -120,7 +122,7 @@
     font-weight:800;
     text-transform:uppercase;
     letter-spacing:.3px;
-    font-size:clamp(.6rem, 1.05vw, .95rem);
+    font-size:clamp(.75rem, 1.15vw, 1.05rem);
     white-space:nowrap;
   }
 
@@ -173,9 +175,8 @@
   }
 
   @media (max-width:720px){
-    .headline-img{ height:28%; top:22%; }
-    .logo{ height:13%; }
-    .cta{ top:55%; width:60%; max-width:60%; white-space:normal; }
+    .content-block{ left:6%; }
+    .cta{ font-size:.8rem; }
     .people-layer{ width:65%; }
   }
 </style>
@@ -186,39 +187,53 @@
 
   <div class="speed-lines">
     <div class="speed-row r1"><div class="speed-track">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
     </div></div>
     <div class="speed-row r2"><div class="speed-track">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
     </div></div>
     <div class="speed-row r3"><div class="speed-track">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
     </div></div>
     <div class="speed-row r4"><div class="speed-track">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
     </div></div>
     <div class="speed-row r5"><div class="speed-track">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+    </div></div>
+    <div class="speed-row r6"><div class="speed-track">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+    </div></div>
+    <div class="speed-row r7"><div class="speed-track">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+    </div></div>
+    <div class="speed-row r8"><div class="speed-track">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+      <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
     </div></div>
   </div>
 
-  <div class="logo">
-    <img src="assets/LOGO_FEIRA.png" alt="Feira do Empreendedor Sebrae">
-  </div>
+  <div class="content-block">
+    <div class="logo">
+      <img src="assets/LOGO_FEIRA.png" alt="Feira do Empreendedor Sebrae">
+    </div>
 
-  <div class="headline-img">
-    <img src="assets/TEXTO_FEIRA.png" alt="A maior feira do Brasil pra quem faz acontecer - 05 e 06 de novembro">
-  </div>
+    <div class="headline-img">
+      <img src="assets/TEXTO_FEIRA.png" alt="A maior feira do Brasil pra quem faz acontecer - 05 e 06 de novembro">
+    </div>
 
-  <a href="#" class="cta" target="_blank" rel="noopener">
-    CLIQUE AQUI E FIQUE POR DENTRO
-    <span class="arrow">&#8594;</span>
-  </a>
+    <a href="#" class="cta" target="_blank" rel="noopener">
+      CLIQUE AQUI E FIQUE POR DENTRO
+      <span class="arrow">&#8594;</span>
+    </a>
+  </div>
 
   <div class="people-layer" id="peopleLayer">
     <img src="assets/PERSONAGENS_01.png" alt="" class="active">
