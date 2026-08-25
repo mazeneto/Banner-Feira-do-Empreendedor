@@ -62,30 +62,29 @@
   /* ===== LOGO (maior) ===== */
   .logo{
     position:absolute;
-    top:5%;
+    top:6%;
     left:4%;
-    width:24%;
-    min-width:160px;
+    height:16%;
     z-index:6;
   }
-  .logo img{ width:100%; height:auto; display:block; }
+  .logo img{ height:100%; width:auto; display:block; }
 
-  /* ===== TEXTO (imagem pronta, já com a data) ===== */
+  /* ===== TEXTO (imagem pronta, já com a data) — dimensionado pela ALTURA
+     do hero, que é a medida curta nesse formato panorâmico ===== */
   .headline-img{
     position:absolute;
     left:4%;
-    top:30%;
-    width:38%;
-    min-width:230px;
+    top:24%;
+    height:48%;
     z-index:5;
   }
-  .headline-img img{ width:100%; height:auto; display:block; }
+  .headline-img img{ height:100%; width:auto; display:block; }
 
   /* ===== CTA abaixo do texto ===== */
   .cta{
     position:absolute;
     left:4%;
-    top:66%;
+    top:75%;
     z-index:5;
     display:inline-flex;
     align-items:center;
@@ -150,9 +149,9 @@
   }
 
   @media (max-width:720px){
-    .headline-img{ width:56%; top:16%; }
-    .logo{ width:34%; }
-    .cta{ top:56%; }
+    .headline-img{ height:38%; top:20%; }
+    .logo{ height:11%; }
+    .cta{ top:60%; font-size:.75rem; }
     .people-layer{ width:65%; }
   }
 </style>
