@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Feira do Empreendedor 2026 - Hero</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800;900&display=swap');
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    font-family:'Figtree', Arial, sans-serif;
+    background:#0b0b0b;
+  }
+
+  /* canvas com a MESMA proporção do FUNDO_FEIRA.png (4273 x 1190) */
+  .hero{
+    position:relative;
+    width:100%;
+    max-width:1920px;
+    margin:0 auto;
+    aspect-ratio: 4273 / 1190;
+    overflow:hidden;
+    background-image:url('assets/FUNDO_FEIRA.png');
+    background-size:cover;
+    background-position:center;
+  }
+
+  /* ===== LINHAS DE VELOCIDADE (fundo estático + elemento correndo pra direita) ===== */
+  .speed-lines{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    overflow:hidden;
+    pointer-events:none;
+  }
+
+  .speed-track{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    display:flex;
+    align-items:center;
+    width:max-content;
+    animation: speed-run 6s linear infinite;
+    opacity:.55;
+  }
+
+  .speed-track img{
+    height:38%;
+    width:auto;
+    margin-right:6%;
+    flex-shrink:0;
+  }
+
+  @keyframes speed-run{
+    from{ transform:translateX(-55%); }
+    to{ transform:translateX(0%); }
+  }
+
+  /* ===== LOGO (maior) ===== */
+  .logo{
+    position:absolute;
+    top:5%;
+    left:4%;
+    width:24%;
+    min-width:160px;
+    z-index:6;
+  }
+  .logo img{ width:100%; height:auto; display:block; }
+
+  /* ===== TEXTO (imagem pronta, já com a data) ===== */
+  .headline-img{
+    position:absolute;
+    left:4%;
+    top:30%;
+    width:38%;
+    min-width:230px;
+    z-index:5;
+  }
+  .headline-img img{ width:100%; height:auto; display:block; }
+
+  /* ===== CTA abaixo do texto ===== */
+  .cta{
+    position:absolute;
+    left:4%;
+    top:66%;
+    z-index:5;
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    text-decoration:none;
+    color:#fff;
+    font-family:'Figtree', Arial, sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    font-size:clamp(.85rem, 1.7vw, 1.35rem);
+  }
+
+  .cta .arrow{
+    display:inline-block;
+    font-size:1.2em;
+    animation: cta-nudge 1.1s ease-in-out infinite;
+  }
+
+  @keyframes cta-nudge{
+    0%, 100%{ transform:translateX(0); }
+    50%{ transform:translateX(8px); }
+  }
+
+  .cta:hover{ text-decoration:underline; }
+
+  /* ===== CAMADA DE PESSOAS (troca sempre pra direita) ===== */
+  .people-layer{
+    position:absolute;
+    right:0;
+    bottom:0;
+    height:100%;
+    display:flex;
+    align-items:flex-end;
+    z-index:4;
+    overflow:hidden;
+  }
+
+  .people-layer img{
+    position:absolute;
+    right:0;
+    bottom:0;
+    height:100%;
+    width:auto;
+    display:block;
+    transform:translateX(0);
+    opacity:1;
+    transition:transform .8s cubic-bezier(.62,.05,.32,1), opacity .5s ease;
+  }
+
+  /* estado antes de entrar: fora de cena, à esquerda */
+  .people-layer img.is-hidden-left{
+    transform:translateX(-25%);
+    opacity:0;
+    pointer-events:none;
+  }
+  /* estado ao sair: fora de cena, à direita */
+  .people-layer img.is-hidden-right{
+    transform:translateX(25%);
+    opacity:0;
+    pointer-events:none;
+  }
+
+  @media (max-width:720px){
+    .headline-img{ width:56%; top:16%; }
+    .logo{ width:34%; }
+    .cta{ top:56%; }
+    .people-layer{ width:65%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+
+  <div class="speed-lines">
+    <div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt="">
+    </div>
+  </div>
+
+  <div class="logo">
+    <img src="assets/LOGO_FEIRA.png" alt="Feira do Empreendedor Sebrae">
+  </div>
+
+  <div class="headline-img">
+    <img src="assets/TEXTO_FEIRA.png" alt="A maior feira do Brasil pra quem faz acontecer - 05 e 06 de novembro">
+  </div>
+
+  <a href="#" class="cta" target="_blank" rel="noopener">
+    CLIQUE AQUI E FIQUE POR DENTRO
+    <span class="arrow">&#8594;</span>
+  </a>
+
+  <div class="people-layer" id="peopleLayer">
+    <img src="assets/PERSONAGENS_01.png" alt="" class="active">
+    <img src="assets/PERSONAGENS_02.png" alt="" class="is-hidden-right">
+    <img src="assets/PERSONAGENS_03.png" alt="" class="is-hidden-right">
+  </div>
+
+</div>
+
+<script>
+  const HOLD_MS = 5000;
+  const imgs = Array.from(document.querySelectorAll('#peopleLayer img'));
+  let current = 0;
+
+  function goTo(nextIndex){
+    const curEl = imgs[current];
+    const nextEl = imgs[nextIndex];
+
+    // pessoa atual sai pela direita
+    curEl.classList.remove('active');
+    curEl.classList.add('is-hidden-right');
+
+    // prepara a próxima do lado esquerdo (sem transição) e entra
+    nextEl.classList.remove('is-hidden-right');
+    nextEl.style.transition = 'none';
+    nextEl.classList.add('is-hidden-left');
+
+    requestAnimationFrame(() => {
+      nextEl.style.transition = '';
+      nextEl.classList.remove('is-hidden-left');
+      nextEl.classList.add('active');
+    });
+
+    current = nextIndex;
+  }
+
+  function cycle(){
+    setTimeout(() => {
+      const next = (current + 1) % imgs.length;
+      goTo(next);
+      cycle();
+    }, HOLD_MS);
+  }
+
+  cycle();
+</script>
+
+</body>
+</html>
