@@ -24,6 +24,8 @@
     background-image:url('assets/FUNDO_FEIRA.png');
     background-size:cover;
     background-position:center;
+    container-type: inline-size;
+    container-name: hero;
   }
 
   /* ===== LINHAS DE VELOCIDADE — fileiras em alturas aleatórias,
@@ -65,11 +67,11 @@
 
   /* alturas "aleatórias" espalhadas por todo o banner, tamanho em vw
      (fixo e previsível — não depende de cadeia de % de altura) */
-  .speed-row.r1{ top:6%;  height:4.6vw; opacity:.75; }
-  .speed-row.r2{ top:24%; height:3.2vw; opacity:.85; }
-  .speed-row.r3{ top:46%; height:5.6vw; opacity:.65; }
-  .speed-row.r4{ top:68%; height:3.6vw; opacity:.8; }
-  .speed-row.r5{ top:87%; height:4.2vw; opacity:.7; }
+  .speed-row.r1{ top:6%;  height:4.6cqw; opacity:.75; }
+  .speed-row.r2{ top:24%; height:3.2cqw; opacity:.85; }
+  .speed-row.r3{ top:46%; height:5.6cqw; opacity:.65; }
+  .speed-row.r4{ top:68%; height:3.6cqw; opacity:.8; }
+  .speed-row.r5{ top:87%; height:4.2cqw; opacity:.7; }
 
   .speed-row.r1 .speed-track{ animation-duration:6.2s; }
   .speed-row.r2 .speed-track{ animation-duration:4.4s; }
@@ -77,11 +79,11 @@
   .speed-row.r4 .speed-track{ animation-duration:5.2s; }
   .speed-row.r5 .speed-track{ animation-duration:6.8s; }
 
-  .speed-row.r1 .speed-track img{ margin-right:8vw; }
-  .speed-row.r2 .speed-track img{ margin-right:6vw; }
-  .speed-row.r3 .speed-track img{ margin-right:10vw; }
-  .speed-row.r4 .speed-track img{ margin-right:7vw; }
-  .speed-row.r5 .speed-track img{ margin-right:9vw; }
+  .speed-row.r1 .speed-track img{ margin-right:8cqw; }
+  .speed-row.r2 .speed-track img{ margin-right:6cqw; }
+  .speed-row.r3 .speed-track img{ margin-right:10cqw; }
+  .speed-row.r4 .speed-track img{ margin-right:7cqw; }
+  .speed-row.r5 .speed-track img{ margin-right:9cqw; }
 
   /* ===== BLOCO DE CONTEÚDO (logo + texto + CTA) — maior, centralizado
      verticalmente e deslocado pra perto da imagem que troca, sempre
@@ -95,13 +97,13 @@
     display:flex;
     flex-direction:column;
     align-items:flex-start;
-    gap:1.3vw;
+    gap:1.3cqw;
   }
 
-  .logo{ height:7vw; }
+  .logo{ height:7cqw; }
   .logo img{ height:100%; width:auto; display:block; }
 
-  .headline-img{ height:12.5vw; }
+  .headline-img{ height:12.5cqw; }
   .headline-img img{ height:100%; width:auto; display:block; }
 
   .cta{
@@ -114,7 +116,7 @@
     font-weight:800;
     text-transform:uppercase;
     letter-spacing:.3px;
-    font-size:clamp(.75rem, 1.15vw, 1.05rem);
+    font-size:clamp(.75rem, 1.15cqw, 1.05rem);
     white-space:nowrap;
   }
 
@@ -197,6 +199,7 @@
     <div class="speed-row r5"><div class="speed-track">
       <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
       <img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt=""><img src="assets/SETAS.png" alt="">
+    </div></div>
   </div>
 
   <div class="content-block">
