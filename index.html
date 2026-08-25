@@ -26,40 +26,71 @@
     background-position:center;
   }
 
-  /* ===== LINHAS DE VELOCIDADE (fundo estático + elemento correndo pra direita) ===== */
+  /* ===== LINHAS DE VELOCIDADE — várias fileiras, alturas diferentes,
+     espalhadas por todo o banner, sempre correndo pra direita ===== */
   .speed-lines{
     position:absolute;
     inset:0;
     z-index:1;
-    overflow:hidden;
     pointer-events:none;
   }
 
-  .speed-track{
+  .speed-row{
     position:absolute;
-    top:0;
     left:0;
+    width:100%;
+    overflow:hidden;
+  }
+
+  .speed-track{
     height:100%;
     display:flex;
     align-items:center;
     width:max-content;
-    animation: speed-run 6s linear infinite;
-    opacity:.55;
+    animation-name: speed-run;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 
   .speed-track img{
-    height:38%;
+    height:100%;
     width:auto;
-    margin-right:6%;
     flex-shrink:0;
   }
 
   @keyframes speed-run{
-    from{ transform:translateX(-55%); }
+    from{ transform:translateX(-50%); }
     to{ transform:translateX(0%); }
   }
 
-  /* ===== LOGO (maior) ===== */
+  .speed-row.r1{ top:2%;  height:9%;  opacity:.16; }
+  .speed-row.r2{ top:14%; height:7%;  opacity:.22; }
+  .speed-row.r3{ top:26%; height:12%; opacity:.14; }
+  .speed-row.r4{ top:42%; height:8%;  opacity:.20; }
+  .speed-row.r5{ top:56%; height:11%; opacity:.15; }
+  .speed-row.r6{ top:72%; height:7%;  opacity:.22; }
+  .speed-row.r7{ top:84%; height:9%;  opacity:.18; }
+  .speed-row.r8{ top:94%; height:6%;  opacity:.20; }
+
+  .speed-row.r1 .speed-track{ animation-duration:5.6s; }
+  .speed-row.r2 .speed-track{ animation-duration:4.3s; }
+  .speed-row.r3 .speed-track{ animation-duration:6.8s; }
+  .speed-row.r4 .speed-track{ animation-duration:5s; }
+  .speed-row.r5 .speed-track{ animation-duration:6.1s; }
+  .speed-row.r6 .speed-track{ animation-duration:4.6s; }
+  .speed-row.r7 .speed-track{ animation-duration:5.4s; }
+  .speed-row.r8 .speed-track{ animation-duration:4.9s; }
+
+  .speed-row.r1 .speed-track img{ margin-right:6vw; }
+  .speed-row.r2 .speed-track img{ margin-right:4vw; }
+  .speed-row.r3 .speed-track img{ margin-right:8vw; }
+  .speed-row.r4 .speed-track img{ margin-right:5vw; }
+  .speed-row.r5 .speed-track img{ margin-right:7vw; }
+  .speed-row.r6 .speed-track img{ margin-right:4.5vw; }
+  .speed-row.r7 .speed-track img{ margin-right:6vw; }
+  .speed-row.r8 .speed-track img{ margin-right:4vw; }
+
+  /* ===== LOGO ===== */
   .logo{
     position:absolute;
     top:6%;
@@ -69,22 +100,22 @@
   }
   .logo img{ height:100%; width:auto; display:block; }
 
-  /* ===== TEXTO (imagem pronta, já com a data) — dimensionado pela ALTURA
-     do hero, que é a medida curta nesse formato panorâmico ===== */
+  /* ===== TEXTO (imagem pronta, já com a data) — menor, dimensionado
+     pela ALTURA do hero (é a medida curta nesse formato panorâmico) ===== */
   .headline-img{
     position:absolute;
     left:4%;
     top:24%;
-    height:48%;
+    height:36%;
     z-index:5;
   }
   .headline-img img{ height:100%; width:auto; display:block; }
 
-  /* ===== CTA abaixo do texto ===== */
+  /* ===== CTA logo abaixo do texto ===== */
   .cta{
     position:absolute;
     left:4%;
-    top:75%;
+    top:63%;
     z-index:5;
     display:inline-flex;
     align-items:center;
@@ -116,11 +147,9 @@
     position:absolute;
     right:0;
     bottom:0;
+    width:55%;
     height:100%;
-    display:flex;
-    align-items:flex-end;
     z-index:4;
-    overflow:hidden;
   }
 
   .people-layer img{
@@ -149,9 +178,9 @@
   }
 
   @media (max-width:720px){
-    .headline-img{ height:38%; top:20%; }
+    .headline-img{ height:30%; top:20%; }
     .logo{ height:11%; }
-    .cta{ top:60%; font-size:.75rem; }
+    .cta{ top:54%; font-size:.75rem; }
     .people-layer{ width:65%; }
   }
 </style>
@@ -161,12 +190,38 @@
 <div class="hero">
 
   <div class="speed-lines">
-    <div class="speed-track">
-      <img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt="">
-      <img src="assets/ASSETS_A.png" alt="">
-    </div>
+    <div class="speed-row r1"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
+    <div class="speed-row r2"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
+    <div class="speed-row r3"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
+    <div class="speed-row r4"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
+    <div class="speed-row r5"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
+    <div class="speed-row r6"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
+    <div class="speed-row r7"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
+    <div class="speed-row r8"><div class="speed-track">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+      <img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt=""><img src="assets/ASSETS_A.png" alt="">
+    </div></div>
   </div>
 
   <div class="logo">
