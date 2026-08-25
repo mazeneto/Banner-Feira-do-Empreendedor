@@ -64,11 +64,11 @@
   }
 
   /* altura fixa em vw (não em % encadeado) pra não crescer sem controle */
-  .speed-row.r1{ top:6%;  height:2.1vw; opacity:.18; }
-  .speed-row.r2{ top:24%; height:1.6vw; opacity:.24; }
-  .speed-row.r3{ top:42%; height:2.6vw; opacity:.14; }
-  .speed-row.r4{ top:62%; height:1.8vw; opacity:.22; }
-  .speed-row.r5{ top:82%; height:2.2vw; opacity:.16; }
+  .speed-row.r1{ top:6%;  height:3.2vw; opacity:.4; }
+  .speed-row.r2{ top:24%; height:2.4vw; opacity:.48; }
+  .speed-row.r3{ top:42%; height:4vw;   opacity:.32; }
+  .speed-row.r4{ top:62%; height:2.8vw; opacity:.45; }
+  .speed-row.r5{ top:82%; height:3.4vw; opacity:.36; }
 
   .speed-row.r1 .speed-track{ animation-duration:6.5s; }
   .speed-row.r2 .speed-track{ animation-duration:5s; }
@@ -85,9 +85,9 @@
   /* ===== LOGO ===== */
   .logo{
     position:absolute;
-    top:6%;
+    top:5%;
     left:4%;
-    height:16%;
+    height:20%;
     z-index:6;
   }
   .logo img{ height:100%; width:auto; display:block; }
@@ -97,28 +97,31 @@
   .headline-img{
     position:absolute;
     left:4%;
-    top:24%;
-    height:36%;
+    top:27%;
+    height:34%;
     z-index:5;
   }
   .headline-img img{ height:100%; width:auto; display:block; }
 
-  /* ===== CTA logo abaixo do texto ===== */
+  /* ===== CTA logo abaixo do texto — mesma largura da imagem do texto ===== */
   .cta{
     position:absolute;
     left:4%;
     top:63%;
+    width:34%;
+    max-width:34%;
     z-index:5;
     display:inline-flex;
     align-items:center;
-    gap:.6em;
+    gap:.5em;
     text-decoration:none;
     color:#fff;
     font-family:'Figtree', Arial, sans-serif;
     font-weight:800;
     text-transform:uppercase;
-    letter-spacing:.5px;
-    font-size:clamp(.85rem, 1.7vw, 1.35rem);
+    letter-spacing:.3px;
+    font-size:clamp(.6rem, 1.05vw, .95rem);
+    white-space:nowrap;
   }
 
   .cta .arrow{
@@ -170,9 +173,9 @@
   }
 
   @media (max-width:720px){
-    .headline-img{ height:30%; top:20%; }
-    .logo{ height:11%; }
-    .cta{ top:54%; font-size:.75rem; }
+    .headline-img{ height:28%; top:22%; }
+    .logo{ height:13%; }
+    .cta{ top:55%; width:60%; max-width:60%; white-space:normal; }
     .people-layer{ width:65%; }
   }
 </style>
