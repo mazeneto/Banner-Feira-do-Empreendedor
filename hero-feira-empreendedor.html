@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Feira do Empreendedor 2026 - Hero</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800;900&display=swap');
+
+  :root{
+    --purple:#C659E0;
+    --yellow:#FFEB69;
+    --white:#EFF3EE;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    font-family:'Figtree', Arial, sans-serif;
+    background:#0b0b0b;
+  }
+
+  /* canvas com a MESMA proporção do FUNDO_FEIRA.png (4273 x 1190) */
+  .hero{
+    position:relative;
+    width:100%;
+    max-width:1920px;
+    margin:0 auto;
+    aspect-ratio: 4273 / 1190;
+    overflow:hidden;
+    background-image:url('assets/FUNDO_FEIRA.png');
+    background-size:cover;
+    background-position:center;
+  }
+
+  /* ===== LOGO ===== */
+  .logo{
+    position:absolute;
+    top:6%;
+    left:4%;
+    width:15%;
+    min-width:110px;
+    z-index:6;
+  }
+  .logo img{ width:100%; height:auto; display:block; }
+
+  /* ===== TEXTO (imagem pronta) ===== */
+  .headline-img{
+    position:absolute;
+    left:4%;
+    top:28%;
+    width:36%;
+    min-width:220px;
+    z-index:5;
+  }
+  .headline-img img{ width:100%; height:auto; display:block; }
+
+  /* ===== tags de data (info que não veio na imagem do texto) ===== */
+  .date-tags{
+    position:absolute;
+    left:4%;
+    top:64%;
+    z-index:5;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+
+  .date-tags .tag{
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:clamp(.7rem, 1.35vw, 1.15rem);
+    padding:.5em 1.1em;
+    border-radius:40px;
+    letter-spacing:.5px;
+    white-space:nowrap;
+  }
+
+  .date-tags .tag.solta{
+    background:var(--purple);
+    color:#fff;
+  }
+  .date-tags .tag.data{
+    background:var(--yellow);
+    color:#3a2e00;
+  }
+
+  /* ===== CAMADA DE PESSOAS (troca, fundo fica parado) ===== */
+  .people-layer{
+    position:absolute;
+    right:0;
+    bottom:0;
+    height:100%;
+    display:flex;
+    align-items:flex-end;
+    z-index:4;
+  }
+
+  .people-layer img{
+    position:absolute;
+    right:0;
+    bottom:0;
+    height:100%;
+    width:auto;
+    display:block;
+    transform:translateX(0);
+    opacity:1;
+    transition:transform .8s cubic-bezier(.62,.05,.32,1), opacity .5s ease;
+  }
+
+  .people-layer img.is-hidden-right{
+    transform:translateX(15%);
+    opacity:0;
+    pointer-events:none;
+  }
+  .people-layer img.is-hidden-left{
+    transform:translateX(-8%);
+    opacity:0;
+    pointer-events:none;
+  }
+
+  @media (max-width:720px){
+    .headline-img{ width:52%; top:16%; }
+    .logo{ width:26%; }
+    .date-tags{ top:56%; }
+    .people-layer{ width:65%; }
+    .people-layer img{ right:-10%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+
+  <div class="logo">
+    <img src="assets/LOGO_FEIRA.png" alt="Feira do Empreendedor Sebrae">
+  </div>
+
+  <div class="headline-img">
+    <img src="assets/TEXTO_FEIRA.png" alt="A maior feira do Brasil pra quem faz acontecer">
+  </div>
+
+  <div class="date-tags">
+    <div class="tag solta">Volta em 2026</div>
+    <div class="tag data">05 e 06 de novembro</div>
+  </div>
+
+  <div class="people-layer" id="peopleLayer">
+    <img src="assets/PERSONAGENS_01.png" alt="" class="active">
+    <img src="assets/PERSONAGENS_02.png" alt="" class="is-hidden-right">
+    <img src="assets/PERSONAGENS_03.png" alt="" class="is-hidden-right">
+  </div>
+
+</div>
+
+<script>
+  const HOLD_MS = 5000;
+  const imgs = Array.from(document.querySelectorAll('#peopleLayer img'));
+  let current = 0;
+
+  function goTo(nextIndex){
+    const curEl = imgs[current];
+    const nextEl = imgs[nextIndex];
+
+    // pessoa atual sai pela esquerda
+    curEl.classList.remove('active');
+    curEl.classList.add('is-hidden-left');
+
+    // prepara a próxima do lado direito (sem transição) e entra
+    nextEl.classList.remove('is-hidden-left');
+    nextEl.style.transition = 'none';
+    nextEl.classList.add('is-hidden-right');
+
+    requestAnimationFrame(() => {
+      nextEl.style.transition = '';
+      nextEl.classList.remove('is-hidden-right');
+      nextEl.classList.add('active');
+    });
+
+    current = nextIndex;
+  }
+
+  function cycle(){
+    setTimeout(() => {
+      const next = (current + 1) % imgs.length;
+      goTo(next);
+      cycle();
+    }, HOLD_MS);
+  }
+
+  cycle();
+</script>
+
+</body>
+</html>
